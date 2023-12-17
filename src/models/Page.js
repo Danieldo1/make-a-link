@@ -8,6 +8,10 @@ const PageSchema = new Schema({
         min: 1,
         unique: true
     },
+owner: {
+    type: String,
+    required: true
+},
 
 }, {
     timestamps: true

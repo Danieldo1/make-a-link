@@ -24,7 +24,8 @@ const AccountPage = async ({searchParams}) => {
         if(existingUser){
             return false
         } else {
-          return await Page.create({username})
+            const email = session?.user?.email
+          return await Page.create({username, owner:email})
         }
  
     }

@@ -1,13 +1,18 @@
 'use client'
 
-
 import ClaimBtn from '@/components/btns/ClaimBtn'
 import {useState} from 'react'
 import {redirect} from 'next/navigation'
+
+
 const ClaimForm = ({handleForm, username, session}) => {
     const [created, setCreated] = useState(false)
+
+
 const handleSubmit = async (formData) => {
+ 
     const res = await handleForm(formData)
+  
 setCreated(res === false)
 if(res){
     redirect('/account/' + formData.get('username'))
@@ -30,7 +35,7 @@ if(res){
             <p className='text-red-950'>Username is already in use.</p>
         </div>
     )}
-        <ClaimBtn />
+        <ClaimBtn   />
         </div>
 </form>
   )
