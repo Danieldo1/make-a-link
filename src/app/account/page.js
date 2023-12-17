@@ -1,28 +1,36 @@
+
+
 import React from 'react'
 import { getServerSession } from 'next-auth'
 import { optionsAuth } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 
+import { Page } from '@/models/Page'
+import mongoose from 'mongoose'
+import ClaimForm from '@/components/forms/ClaimForm'
+
 const AccountPage = async ({searchParams}) => {
+
     const session = await getServerSession(optionsAuth)
     const username = searchParams?.username
-    // console.log(username)
     if(!session){
         redirect('/login')
     }
+    const handleForm = async (formData) => {
+        'use server'
+        const username = formData.get('username')
+        mongoose.connect(process.env.MONGODB_URL)
+        const existingUser= await Page.findOne({username})
+        if(existingUser){
+            return false
+        } else {
+          return await Page.create({username})
+        }
+ 
+    }
   return (
     <div>
-        <form>
-            <h1 className='text-3xl font-bold text-center'>Hello, {session?.user?.name}</h1>
-            <p className='text-slate-500 text-center'>Your username is {username}</p>
-                <div className='max-w-xs mx-auto'>
-            <input type="text" placeholder='Username' 
-            className='block p-2 mx-auto my-4 border rounded-lg w-full text-center'
-            defaultValue={username}
-            />
-            <button className='bg-indigo-500 text-white px-2 py-2 block mx-auto rounded-lg w-full ' type='submit'>Claim Username</button>
-                </div>
-        </form>
+    <ClaimForm handleForm={handleForm} username={username} session={session} />
     </div>
   )
 }
