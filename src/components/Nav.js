@@ -3,8 +3,7 @@ import Link from 'next/link'
 const Nav = () => {
   return (
     <header className='bg-gray-50 py-4 px-4 shadow-lg'>
-        <div className='max-w-7xl justify-between  flex mx-auto '>
-
+        <div className='max-w-7xl justify-between px-6 flex mx-auto '>
     <div className='flex items-center gap-4 md:px-8'>
       <Link href="/">
         Make-a-Link
@@ -25,7 +24,7 @@ const Nav = () => {
       <Link href="/login">
         Login
       </Link>
-      <Link href="/signup">
+      <Link href="/login">
         Sign Up
       </Link>
     </nav>
