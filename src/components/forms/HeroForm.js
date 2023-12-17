@@ -3,9 +3,11 @@
 import { signIn } from 'next-auth/react'
 import React, { useEffect } from 'react'
 import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
-const HeroForm = () => {
-
+const HeroForm = ({user}) => {
+console.log(user)
+const router = useRouter()
    useEffect(() => {
        if('localStorage' in window && window.localStorage.getItem('users username')){
            const username = window.localStorage.getItem('users username')
@@ -13,6 +15,7 @@ const HeroForm = () => {
            redirect('/account?username=' + username)
        }
    },[])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const form = e.target
@@ -22,8 +25,12 @@ const HeroForm = () => {
             alert('Please enter a username')
             return
         } else {
+          if(user){
+            router.push('/account?username=' + username)
+          } else {
             window.localStorage.setItem('users username', username)
-            await signIn('google')
+              await signIn('google')
+            }
         }
     }
   return (
