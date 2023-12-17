@@ -40,7 +40,7 @@ const Nav = async () => {
         )}
         {!!session && (
             <>
-            <Link href="/dashboard" className='hover:text-black transition duration-300 ease-in'> 
+            <Link href="/account" className='hover:text-black transition duration-300 ease-in'> 
                 Hello, {session?.user?.name}
             </Link>
             <LogOut />
