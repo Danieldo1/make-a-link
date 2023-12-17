@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import { options } from '@/app/api/auth/[...nextauth]/route'
+import {  optionsAuth } from '@/app/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'
 import LogOut from './btns/LogOut'
 const Nav = async () => {
-    const session = await getServerSession(options)
+    const session = await getServerSession(optionsAuth)
     // console.log(session)
 
   return (
