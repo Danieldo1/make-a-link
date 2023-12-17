@@ -15,7 +15,7 @@ const handleSubmit = async (formData) => {
   
 setCreated(res === false)
 if(res){
-    redirect('/account/' + formData.get('username'))
+    redirect('/account?created='+formData.get('username'))
 }
 }
   return (

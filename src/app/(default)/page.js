@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero'
 import { getServerSession } from 'next-auth'
-import { optionsAuth } from './api/auth/[...nextauth]/route'
+import { optionsAuth } from '../api/auth/[...nextauth]/route'
 
 
 

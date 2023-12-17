@@ -4,7 +4,6 @@ import React from 'react'
 import { getServerSession } from 'next-auth'
 import { optionsAuth } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
-
 import { Page } from '@/models/Page'
 import mongoose from 'mongoose'
 import ClaimForm from '@/components/forms/ClaimForm'
@@ -13,8 +12,18 @@ const AccountPage = async ({searchParams}) => {
 
     const session = await getServerSession(optionsAuth)
     const username = searchParams?.username
+    mongoose.connect(process.env.MONGODB_URL)
+    const page = await Page.findOne({owner:session?.user?.email})
     if(!session){
-        redirect('/login')
+      return  redirect('/login')
+    }
+
+    if(page){
+      return(
+        <div>
+          your page is: /{page.username}
+        </div>
+      )
     }
     const handleForm = async (formData) => {
         'use server'
@@ -29,6 +38,8 @@ const AccountPage = async ({searchParams}) => {
         }
  
     }
+
+
   return (
     <div>
     <ClaimForm handleForm={handleForm} username={username} session={session} />
