@@ -11,12 +11,13 @@ import { toast}  from 'react-hot-toast'
 import SuccessToast  from '../btns/SuccessToast'
 
 const PageForm = async ({page}) => {
+   
 const session = await getServerSession(optionsAuth)
 const saveSettings = async (formData) => {
     'use server'
     mongoose.connect(process.env.MONGODB_URL)
     if(session){
-        await Page.updateOne({owner:session?.user?.email},{displayName:formData.get('displayName'),location:formData.get('location'),bio:formData.get('bio'),bgType:formData.get('bgType')})
+        await Page.updateOne({owner:session?.user?.email},{displayName:formData.get('displayName'),location:formData.get('location'),bio:formData.get('bio'),bgType:formData.get('bgType'),bgColor:formData.get('bgColor')})
         return true
     } else {
         return false
@@ -26,16 +27,17 @@ const saveSettings = async (formData) => {
   return (
     <div className='-m-4 '>
         <form action={saveSettings}>
-        <div className='bg-red-200 h-64 rounded-t-lg '>
+        <div 
+        style={{backgroundColor:page.bgColor}}
+        className=' h-64 rounded-t-lg '>
            <RadioBtn 
            defaultValue={page.bgType}
            options={[
                {value:"color",src:'paint.svg',label:"Color"},
                {value:"image",src:'photo.svg',label:"Image"},
             ]}
+       
             />
-          
-
         </div>
 
             <div className='flex justify-center -mb-12'>

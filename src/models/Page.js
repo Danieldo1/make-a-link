@@ -27,6 +27,10 @@ bio:{
 bgType:{
     type: String,
     default: "color",
+},
+bgColor:{
+    type: String,
+    default: "#000000",
 }
 }, {
     timestamps: true
