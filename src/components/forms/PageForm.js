@@ -17,7 +17,16 @@ const saveSettings = async (formData) => {
     'use server'
     mongoose.connect(process.env.MONGODB_URL)
     if(session){
-        await Page.updateOne({owner:session?.user?.email},{displayName:formData.get('displayName'),location:formData.get('location'),bio:formData.get('bio'),bgType:formData.get('bgType'),bgColor:formData.get('bgColor')})
+        const dataPoints =['displayName','location','bio','bgType','bgColor','bgImage']
+        const dataToSend = {}
+        for(const key of dataPoints){
+            if(formData.has(key)){
+                dataToSend[key] = formData.get(key)
+            }
+            
+        }
+       
+        await Page.updateOne({owner:session?.user?.email},dataToSend)
         return true
     } else {
         return false
@@ -28,15 +37,16 @@ const saveSettings = async (formData) => {
     <div className='-m-4 '>
         <form action={saveSettings}>
         <div 
-        style={{backgroundColor:page.bgColor}}
-        className=' h-64 rounded-t-lg '>
+        style={
+            page.bgType === 'color' ? {backgroundColor:page.bgColor} : {backgroundImage:`url(${page.bgImage})`}
+        }
+        className=' h-64 rounded-t-lg bg-cover bg-center '>
            <RadioBtn 
            defaultValue={page.bgType}
            options={[
                {value:"color",src:'paint.svg',label:"Color"},
                {value:"image",src:'photo.svg',label:"Image"},
             ]}
-       
             />
         </div>
 

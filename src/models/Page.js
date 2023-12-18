@@ -31,6 +31,10 @@ bgType:{
 bgColor:{
     type: String,
     default: "#000000",
+},
+bgImage:{
+    type: String,
+    default: "https://make-a-link.s3.amazonaws.com/27jlqb2r83b.webp",
 }
 }, {
     timestamps: true
