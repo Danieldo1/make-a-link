@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation'
 import { Page } from '@/models/Page'
 import mongoose from 'mongoose'
 import ClaimForm from '@/components/forms/ClaimForm'
+import  PageForm  from '@/components/forms/PageForm'
 
 const AccountPage = async ({searchParams}) => {
 
@@ -21,7 +22,7 @@ const AccountPage = async ({searchParams}) => {
     if(page){
       return(
         <div>
-          your page is: /{page.username}
+          <PageForm  page={page} />
         </div>
       )
     }

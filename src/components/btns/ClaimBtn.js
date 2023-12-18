@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useFormStatus } from 'react-dom'
 
-const ClaimBtn = ({}) => {
+const ClaimBtn = ({text='Claim Username',pendingText='Claiming...'
+}) => {
   const {pending}=useFormStatus()
     const [imageSrc, setImageSrc] = useState('/lockopen.svg');
     const [isHovered, setIsHovered] = useState(false);
@@ -19,12 +20,12 @@ const ClaimBtn = ({}) => {
 >
   {pending ? (
     <>
-    Claiming...
+    {pendingText}
     <Image src={'/spinner.svg'} alt='loading' width={20} height={20} className='inline-block ml-2 animate-spin' />
     </>
   ) : 
   (<>
-        Claim Username
+        {text}
         <Image src={isHovered ? '/lockclosed.svg' : imageSrc}  alt='lock icon' width={20} height={20} className='inline-block ml-2' />
   </>
   )}
