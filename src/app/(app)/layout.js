@@ -8,6 +8,7 @@ import { optionsAuth } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import AsideApp from '@/components/applayout/AsideApp'
+import {Toaster }from 'react-hot-toast'
 
 export const metadata = {
   title: 'Make-a-Link',
@@ -26,6 +27,7 @@ export default async function RootLayout({ children,...rest }) {
  return (
   <html lang="en">
       <body className={inter.className}>
+        <Toaster />
           <main className='flex min-h-screen '>
            <AsideApp user={session?.user} />
             <div className=' grow ' >

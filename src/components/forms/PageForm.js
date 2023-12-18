@@ -7,6 +7,8 @@ import Image from 'next/image'
 import ClaimBtn from '../btns/ClaimBtn'
 import mongoose from 'mongoose'
 import { Page } from '@/models/Page'
+import { toast}  from 'react-hot-toast'
+import SuccessToast  from '../btns/SuccessToast'
 
 const PageForm = async ({page}) => {
 const session = await getServerSession(optionsAuth)
@@ -14,22 +16,26 @@ const saveSettings = async (formData) => {
     'use server'
     mongoose.connect(process.env.MONGODB_URL)
     if(session){
-       await Page.updateOne({owner:session?.user?.email},{displayName:formData.get('displayName'),location:formData.get('location'),bio:formData.get('bio')})
-       return true
+        await Page.updateOne({owner:session?.user?.email},{displayName:formData.get('displayName'),location:formData.get('location'),bio:formData.get('bio'),bgType:formData.get('bgType')})
+        return true
+    } else {
+        return false
     }
-    return false
-    
 }
+
   return (
     <div className='-m-4 '>
         <form action={saveSettings}>
-        <div className='bg-red-200 h-64 rounded-t-lg'>
+        <div className='bg-red-200 h-64 rounded-t-lg '>
            <RadioBtn 
+           defaultValue={page.bgType}
            options={[
-            {value:"color",src:'paint.svg',label:"Color"},
-            {value:"image",src:'photo.svg',label:"Image"},
-           ]}
-           onChange={() => {}} />
+               {value:"color",src:'paint.svg',label:"Color"},
+               {value:"image",src:'photo.svg',label:"Image"},
+            ]}
+            />
+          
+
         </div>
 
             <div className='flex justify-center -mb-12'>
@@ -43,7 +49,6 @@ const saveSettings = async (formData) => {
                     <input type='text' id='locationNow' placeholder='New York' name='location' defaultValue={page.location} />
                 <label htmlFor='bioIn' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Bio</label>
                     <textarea name='bio' defaultValue={page.bio} id='bioIn' placeholder='Tell the world about yourself' className='resize-none' />
-                    
                     <div className='flex justify-center mt-4 max-w-md items-center mx-auto'>
                         <ClaimBtn pendingText={'Saving...'} text={'Save'} />
                     </div>
