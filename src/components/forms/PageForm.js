@@ -9,6 +9,7 @@ import mongoose from 'mongoose'
 import { Page } from '@/models/Page'
 import { toast}  from 'react-hot-toast'
 import SuccessToast  from '../btns/SuccessToast'
+import { User } from '@/models/User'
 
 const PageForm = async ({page}) => {
    
@@ -25,13 +26,18 @@ const saveSettings = async (formData) => {
             }
             
         }
-       
         await Page.updateOne({owner:session?.user?.email},dataToSend)
+        if(formData.has('avatar')){
+            const avatar = formData.get('avatar')
+            await User.updateOne({email:session?.user?.email},{image:avatar})
+        }
         return true
     } else {
         return false
     }
 }
+
+
 
   return (
     <div className='-m-4 '>
@@ -47,14 +53,11 @@ const saveSettings = async (formData) => {
                {value:"color",src:'paint.svg',label:"Color"},
                {value:"image",src:'photo.svg',label:"Image"},
             ]}
+            session={session}
             />
         </div>
 
-            <div className='flex justify-center -mb-12'>
-                <Image src={session?.user?.image} alt='avatar' width={128} height={128} className='rounded-full relative -top-8 border-2 shadow-md border-white' />
-            </div>
-
-            <div className='p-4 '>
+            <div className='p-4 pt-24'>
                 <label htmlFor='nameIn' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Name</label>
                     <input type='text' id='nameIn' placeholder='Your name' name='displayName' defaultValue={page.displayName} />
                 <label htmlFor='locationNow' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Location</label>

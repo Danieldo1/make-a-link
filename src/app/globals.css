@@ -7,11 +7,11 @@ body {
 }
 
 .radio-selectors{
-    @apply inline-flex mt-5 ml-5
+    @apply inline-flex mt-5 ml-5 gap-2
 }
 
 .radio-selectors span{
-   @apply  py-4 px-4 bg-blue-300  block
+   @apply  py-4 px-4 bg-blue-300  block 
 
 }
 .radio-selectors input[type="radio"] {
@@ -26,3 +26,6 @@ input[type="text"],textarea {
     @apply bg-gray-100 w-full block py-2 px-2 mb-2 rounded-md
 }
 
+/* input[type='color']{
+    @apply 
+} */

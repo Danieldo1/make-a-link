@@ -5,6 +5,9 @@ const nextConfig = {
             {
                 hostname: '*.googleusercontent.com',
             },
+            {
+                hostname: 'make-a-link.s3.amazonaws.com'
+            }
         ],
     }
 }
