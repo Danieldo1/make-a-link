@@ -29,3 +29,7 @@ input[type="text"],textarea {
 /* input[type='color']{
     @apply 
 } */
+.sortable-ghost {
+    opacity: .3;
+    @apply bg-gray-300
+}

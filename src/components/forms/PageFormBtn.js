@@ -2,10 +2,11 @@
 import React, { useState } from 'react'
 import SectionBox from '../applayout/SectionBox'
 import Image from 'next/image'
-import {TrashIcon} from 'lucide-react'
+import {TrashIcon,GripHorizontalIcon} from 'lucide-react'
 import ClaimBtn from '../btns/ClaimBtn'
 import { savePageButtons } from '@/libs/saveButtons'
 import { toast } from 'react-hot-toast'
+import { ReactSortable } from 'react-sortablejs'
 
 const buttonsAll = [
     {key: 'email',label:'E-mail',src:'/mail.svg'},
@@ -45,6 +46,7 @@ const PageFormBtn = ({page,user}) => {
             <div className='flex flex-wrap gap-2 border-b pb-4 border-blue-100'>
                 {selectedBtn.map((button)=>(
                     <button 
+                    key={button.key}
                     type='button'
                     onClick={()=>handleButtonClick(button)} className='flex items-center gap-2 p-2 bg-blue-100 rounded-lg'>
                     <Image src={button.src} alt='Settings' width={25} height={25} />
@@ -54,18 +56,21 @@ const PageFormBtn = ({page,user}) => {
                 ))}
             
             </div>
-            {activeBtn.map((button)=>(
-                <div className='mt-4 flex gap-2 items-center justify-between bg-blue-100 p-2 rounded-lg'>
-                    <div className='w-[15%] flex gap-2 items-center justify-start'>
-                    <Image src={button.src} alt='Settings' width={25} height={25} />
-                        <span className='text-sm uppercase hidden lg:block'>{button.label}</span>
+            <ReactSortable list={activeBtn} setList={setActiveBtn} >
+                {activeBtn.map((button)=>(
+                    <div key={button.key} className='mt-4 flex gap-2 items-center justify-between bg-blue-100 p-2 rounded-lg'>
+                        <GripHorizontalIcon className='w-8 h-8 cursor-move text-gray-500 hover:text-blue-500 transition duration-300 ease-in' />
+                        <div className='w-[15%] flex gap-2 items-center justify-start'>
+                        <Image src={button.src} alt='Settings' width={25} height={25} />
+                            <span className='text-sm uppercase hidden xl:block '>{button.label}</span>
+                        </div>
+                <input type='text' defaultValue={page?.buttons[button.key]} name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} className='w-[70%]' />
+                <button type='button' onClick={()=>deleteButton(button)} >
+                    <TrashIcon className='w-6 h-6 cursor-pointer hover:text-red-500 transition duration-150 ease-in' />
+                </button>
                     </div>
-            <input type='text' defaultValue={page?.buttons[button.key]} name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} />
-            <button type='button' onClick={()=>deleteButton(button)} >
-                <TrashIcon className='w-8 h-8 cursor-pointer hover:text-red-500 transition duration-150 ease-in' />
-            </button>
-                </div>
-            ))}
+                ))}
+            </ReactSortable>
 
             <div className='flex justify-center mt-4 max-w-md mx-auto border-t border-blue-100'>
                 <ClaimBtn text='Save' pendingText='Saving...' />

@@ -9,7 +9,7 @@ import mongoose from 'mongoose'
 import ClaimForm from '@/components/forms/ClaimForm'
 import  PageForm  from '@/components/forms/PageForm'
 import PageFormBtn from '@/components/forms/PageFormBtn'
-
+import PageLinksForm  from '@/components/forms/PageLinksForm'
 const AccountPage = async ({searchParams}) => {
 
     const session = await getServerSession(optionsAuth)
@@ -25,6 +25,7 @@ const AccountPage = async ({searchParams}) => {
         <div>
           <PageForm  page={page} />
           <PageFormBtn  page={page} user={session?.user} />
+          <PageLinksForm page={page} user={session?.user} />
         </div>
       )
     }
