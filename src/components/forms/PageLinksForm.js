@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import SectionBox from '../applayout/SectionBox'
 import Image from 'next/image'
-import {PlusCircle,GripHorizontal} from 'lucide-react'
+import {PlusCircle,GripHorizontal,TrashIcon} from 'lucide-react'
 import ClaimBtn from '../btns/ClaimBtn'
 import {Image as ImageIcon} from 'lucide-react'
 import { ReactSortable } from 'react-sortablejs'
@@ -54,8 +54,12 @@ const PageLinksForm = ({page,user}) => {
                 }
             })
             return [...prev]
-            // return newLinks
         })
+    }
+
+    const removeLink = (key) => {
+        setLinks(prev => [...prev].filter(link => link.key !== key)
+        )
     }
 
   return (
@@ -117,6 +121,11 @@ const PageLinksForm = ({page,user}) => {
                                     <input value={link.title} onChange={(e)=> handleInputChange(link.key,'title',e)} type="text" placeholder='Title'  />
                                     <input value={link.subtitle} onChange={(e)=> handleInputChange(link.key,'subtitle',e)} type="text" placeholder='Subtitle'  />
                                     <input value={link.url} onChange={(e)=> handleInputChange(link.key,'url',e)} type="text" placeholder='URL'  />
+                                </div>
+                                <div>
+                                    <button type='button' onClick={() => removeLink(link.key) }>
+                                    <TrashIcon className='w-6 h-6 cursor-pointer hover:text-red-500 transition duration-150 ease-in' />
+                                    </button>
                                 </div>
                             </div>
                         ))}     
