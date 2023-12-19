@@ -45,7 +45,7 @@ const router = useRouter()
           setBgImage(link)
           toast.success('Image uploaded successfully!',{duration:2000})
           setLoading(false)
-          toast('Please click save button to save your changes !',{icon: '👏',duration:10000},)
+          toast('Please click save button to save your changes !',{icon: '❗',duration:10000},)
         })
       })
     }

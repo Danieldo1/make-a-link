@@ -10,12 +10,13 @@ import { Page } from '@/models/Page'
 import { toast}  from 'react-hot-toast'
 import SuccessToast  from '../btns/SuccessToast'
 import { User } from '@/models/User'
+import SectionBox from '../applayout/SectionBox'
 
 const PageForm = async ({page}) => {
    
-const session = await getServerSession(optionsAuth)
-const saveSettings = async (formData) => {
-    'use server'
+    const session = await getServerSession(optionsAuth)
+    const saveSettings = async (formData) => {
+        'use server'
     mongoose.connect(process.env.MONGODB_URL)
     if(session){
         const dataPoints =['displayName','location','bio','bgType','bgColor','bgImage']
@@ -40,13 +41,14 @@ const saveSettings = async (formData) => {
 
 
   return (
-    <div className='-m-4 '>
+    <div >
+        <SectionBox>
         <form action={saveSettings}>
         <div 
         style={
             page.bgType === 'color' ? {backgroundColor:page.bgColor} : {backgroundImage:`url(${page.bgImage})`}
         }
-        className=' h-64 rounded-t-lg bg-cover bg-center '>
+        className=' h-64 -m-4 rounded-t-lg bg-cover bg-center '>
            <RadioBtn 
            defaultValue={page.bgType}
            options={[
@@ -69,6 +71,7 @@ const saveSettings = async (formData) => {
                     </div>
             </div>
         </form>
+        </SectionBox>
     </div>
   )
 }

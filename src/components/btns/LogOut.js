@@ -16,7 +16,7 @@ const LogOut = ({
    className={className}
    >
     <Image src='/logout.svg' alt='Log Out' width={width} height={height} className=' rotate-180 hover:transition group-hover:ease-in group-hover:duration-300 ' />
-    <span className='hidden hover:transition group-hover:ease-in group-hover:duration-300 group-hover:flex group-hover:text-black'>Log Out</span>
+    <span className='hidden hover:transition group-hover:ease-in group-hover:duration-300 group-hover:block group-hover:text-black'>Log Out</span>
    </button>
   )
 }
