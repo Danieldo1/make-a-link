@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import LogOut from '@/components/btns/LogOut'
 import { usePathname } from 'next/navigation'
+import { PlusCircle, XCircle } from 'lucide-react'
 
 const AsideApp = ({user}) => {
     const [isAsideHidden, setAsideHidden] = useState(false);
@@ -14,12 +15,12 @@ const AsideApp = ({user}) => {
       };
   return (
     <>
-          <button onClick={toggleAside} className="  left-2 top-4 z-10  fixed ">
-        {isAsideHidden ? (<Image src='/clipboardp.svg' alt='Open' width={25} height={25} />) : (<Image src='/clipboardx.svg' alt='Close' width={25} height={25} />)}
+          <button onClick={toggleAside} className="  left-2 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
+        {isAsideHidden ? (<PlusCircle className='w-6 h-6' />) : (<XCircle className='w-6 h-6' />)}
       </button>
 
       <div className="flex ">
-  <aside className={`bg-white w-[200px]  p-4 shadow-lg ${isAsideHidden ? 'hidden' : ''} flex flex-col`}>
+  <aside className={`bg-white w-[200px]  p-4 shadow-lg ${isAsideHidden ? 'hidden ' : ''} flex flex-col transition-width duration-300 ease-in-out`}>
 
 <div className='sticky top-0 pt-5 '>
     <div className='rounded-full overflow-hidden aspect-square w-20 mx-auto'>

@@ -19,3 +19,14 @@ if(session){
 } 
 return false
 }
+
+export const savePageLinks = async (links) => {
+    mongoose.connect(process.env.MONGODB_URL)
+    const session = await getServerSession(optionsAuth)
+    if(session){
+        await Page.updateOne({owner:session?.user?.email}, {links})
+
+    } else {
+        return false
+    }
+}

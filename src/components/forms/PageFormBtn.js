@@ -56,7 +56,7 @@ const PageFormBtn = ({page,user}) => {
                 ))}
             
             </div>
-            <ReactSortable list={activeBtn} setList={setActiveBtn} >
+            <ReactSortable handle='.cursor-move' list={activeBtn} setList={setActiveBtn} >
                 {activeBtn.map((button)=>(
                     <div key={button.key} className='mt-4 flex gap-2 items-center justify-between bg-blue-100 p-2 rounded-lg'>
                         <GripHorizontalIcon className='w-8 h-8 cursor-move text-gray-500 hover:text-blue-500 transition duration-300 ease-in' />

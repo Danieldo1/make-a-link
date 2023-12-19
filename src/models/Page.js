@@ -39,6 +39,11 @@ bgImage:{
 buttons:{
     type: Object,
     default: {}
+},
+links:{
+    type: Object,
+    default: []
+
 }
 
 }, {
