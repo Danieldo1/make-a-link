@@ -2,6 +2,10 @@
 import React, { useState } from 'react'
 import SectionBox from '../applayout/SectionBox'
 import Image from 'next/image'
+import {TrashIcon} from 'lucide-react'
+import ClaimBtn from '../btns/ClaimBtn'
+import { savePageButtons } from '@/libs/saveButtons'
+import { toast } from 'react-hot-toast'
 
 const buttonsAll = [
     {key: 'email',label:'E-mail',src:'/mail.svg'},
@@ -13,8 +17,10 @@ const buttonsAll = [
     {key: 'linkedin',label:'LinkedIn',src:'/linkedin1.svg'},
     {key: 'telegram',label:'Telegram',src:'/telegram.svg'},
 ]
-const PageFormBtn = () => {
-    const [activeBtn, setActiveBtn] = useState([])
+const PageFormBtn = ({page,user}) => {
+    const savedBtns = Object.keys(page?.buttons)
+    const pageSavedBtns = savedBtns.map((key)=> buttonsAll.find(button => button.key === key))
+    const [activeBtn, setActiveBtn] = useState(pageSavedBtns)
 
     const handleButtonClick = (button) => {
         setActiveBtn(prev => {
@@ -23,29 +29,48 @@ const PageFormBtn = () => {
     }
 
     const selectedBtn = buttonsAll.filter(button1 => !activeBtn.find(button2 => button1.key === button2.key))
-  return (
+  
+  const saveButtons = async (formData) => {
+      await savePageButtons(formData)
+      toast.success('Successfully saved!')
+  }
+
+  const deleteButton =({key:keyRemove}) => {
+      setActiveBtn(prev => prev.filter(button => button.key !== keyRemove))
+  }
+    return (
     <SectionBox>
-        <h2 className='text-xl font-bold mb-4'>Connect-Me</h2>
-        <div className='flex flex-wrap gap-2'>
-            {selectedBtn.map((button)=>(
-                <button onClick={()=>handleButtonClick(button)} className='flex items-center gap-2 p-2 bg-blue-100 rounded-lg'>
-                 <Image src={button.src} alt='Settings' width={25} height={25} />
-                 <span className='text-sm uppercase'>{button.label}</span>
-                 <Image src='/plus.svg' alt='Settings' width={25} height={25} />
-             </button>
-             ))}
-         
-        </div>
-        {activeBtn.map((button)=>(
-            <div className='mt-4 flex gap-2 items-center justify-center bg-blue-100 p-2 rounded-lg'>
-                <div className='w-1/4 flex gap-2 items-center justify-center'>
-                 <Image src={button.src} alt='Settings' width={25} height={25} />
-                     <span className='text-sm uppercase hidden md:block'>{button.label}</span>
-                {/* <Image src='/minus.svg' alt='Settings' width={25} height={25} /> */}
-                </div>
-        <input type='text' name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} />
+        <form action={saveButtons}>
+            <h2 className='text-xl font-bold mb-4'>Connect-Me</h2>
+            <div className='flex flex-wrap gap-2 border-b pb-4 border-blue-100'>
+                {selectedBtn.map((button)=>(
+                    <button 
+                    type='button'
+                    onClick={()=>handleButtonClick(button)} className='flex items-center gap-2 p-2 bg-blue-100 rounded-lg'>
+                    <Image src={button.src} alt='Settings' width={25} height={25} />
+                    <span className='text-sm uppercase'>{button.label}</span>
+                    <Image src='/plus.svg' alt='Settings' width={25} height={25} />
+                </button>
+                ))}
+            
             </div>
-        ))}
+            {activeBtn.map((button)=>(
+                <div className='mt-4 flex gap-2 items-center justify-between bg-blue-100 p-2 rounded-lg'>
+                    <div className='w-[15%] flex gap-2 items-center justify-start'>
+                    <Image src={button.src} alt='Settings' width={25} height={25} />
+                        <span className='text-sm uppercase hidden lg:block'>{button.label}</span>
+                    </div>
+            <input type='text' defaultValue={page?.buttons[button.key]} name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} />
+            <button type='button' onClick={()=>deleteButton(button)} >
+                <TrashIcon className='w-8 h-8 cursor-pointer hover:text-red-500 transition duration-150 ease-in' />
+            </button>
+                </div>
+            ))}
+
+            <div className='flex justify-center mt-4 max-w-md mx-auto border-t border-blue-100'>
+                <ClaimBtn text='Save' pendingText='Saving...' />
+            </div>
+        </form>
     </SectionBox>
   )
 }

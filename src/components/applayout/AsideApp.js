@@ -35,8 +35,8 @@ const AsideApp = ({user}) => {
     <Image src='/analytics.svg' alt='Analytics' width={25} height={25} />
     Analytics
   </Link>
-  <Link href='/' className='flex gap-2 font-semibold items-center hover:bg-blue-50 rounded-lg p-1.5 transition duration-300 ease-in'>
-    <Image src='/house.svg' alt='Analytics' width={30} height={30} />
+  <Link href='/' className='flex gap-2 cursor-pointer font-semibold items-center hover:bg-blue-50 rounded-lg p-1.5 transition duration-300 ease-in'>
+    <Image src='/house.svg' alt='Home' width={30} height={30} />
     Home
   </Link>
 </nav>
