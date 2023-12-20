@@ -44,7 +44,7 @@ const PageFormBtn = ({page,user}) => {
     <SectionBox>
         <form action={saveButtons}>
             <h2 className='text-xl font-bold mb-4'>Connect-Me</h2>
-            <div className='flex flex-wrap gap-2 border-b pb-4 border-blue-100'>
+            <div className='flex flex-wrap gap-2 border-b border-gray-200  pb-4 '>
                 {selectedBtn.map((button)=>(
                     <button 
                     key={button.key}
@@ -72,8 +72,8 @@ const PageFormBtn = ({page,user}) => {
                     </div>
                 ))}
             </ReactSortable>
-
-            <div className='flex justify-center mt-4 max-w-md mx-auto border-t border-blue-100'>
+                    <div className='border-t border-gray-200 mt-5' />
+            <div className='flex justify-center mt-4 max-w-md mx-auto '>
                 <ClaimBtn text='Save' pendingText='Saving...' />
             </div>
         </form>

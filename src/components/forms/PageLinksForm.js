@@ -75,7 +75,7 @@ const PageLinksForm = ({page,user}) => {
                 <PlusCircle className='w-6 h-6' />
             </button>
 
-                <div className=''>
+                <div className='border-b border-gray-200 pb-5'>
                     <ReactSortable list={links} setList={setLinks} handle={'.handle'} >
                         {links.map((link) => (
                             <div key={link.key} className='mt-4 flex items-center gap-4 bg-blue-100 p-4 rounded-lg'>
@@ -134,7 +134,7 @@ const PageLinksForm = ({page,user}) => {
                     </ReactSortable>
                 </div>
 
-            <div className='border-t pt-4 mt-4 '>
+            <div className=' pt-4  '>
                 <div className='max-w-md mx-auto '>
                 <ClaimBtn text='Save' pendingText='Saving...' />
                 </div>

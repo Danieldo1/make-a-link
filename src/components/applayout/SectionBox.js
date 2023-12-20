@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SectionBox = ({children}) => {
+const SectionBox = ({children,className='bg-white m-4 ml-10 p-4 shadow-md rounded-lg '  }) => {
   return (
-    <div className='bg-white m-4 ml-10 p-4 shadow-md rounded-lg '>
+    <div className={className}>
     {children}
     </div>
   )

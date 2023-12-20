@@ -59,17 +59,19 @@ const PageForm = async ({page}) => {
             />
         </div>
 
-            <div className='p-4 pt-24'>
+            <div className='p-4 pt-24 '>
                 <label htmlFor='nameIn' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Name</label>
                     <input type='text' id='nameIn' placeholder='Your name' name='displayName' defaultValue={page.displayName} />
                 <label htmlFor='locationNow' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Location</label>
                     <input type='text' id='locationNow' placeholder='New York' name='location' defaultValue={page.location} />
-                <label htmlFor='bioIn' className='uppercase text-gray-400 font-semibold text-sm mb-2 '>Bio</label>
-                    <textarea name='bio' defaultValue={page.bio} id='bioIn' placeholder='Tell the world about yourself' className='resize-none' />
-                    <div className='flex justify-center mt-4 max-w-md items-center mx-auto'>
+                <label htmlFor='bioIn' className='uppercase text-gray-400 font-semibold text-sm mb-2  '>Bio</label>
+                    <textarea name='bio' defaultValue={page.bio} id='bioIn' placeholder='Tell the world about yourself' className='resize-none  ' />
+                   
+            </div>
+            <div className="border-b border-gray-200 px-12" />
+                    <div className='flex justify-center mt-4 max-w-md items-center mx-auto '>
                         <ClaimBtn pendingText={'Saving...'} text={'Save'} />
                     </div>
-            </div>
         </form>
         </SectionBox>
     </div>

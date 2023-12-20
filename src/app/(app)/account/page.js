@@ -10,6 +10,7 @@ import ClaimForm from '@/components/forms/ClaimForm'
 import  PageForm  from '@/components/forms/PageForm'
 import PageFormBtn from '@/components/forms/PageFormBtn'
 import PageLinksForm  from '@/components/forms/PageLinksForm'
+import PreviewLinkTab from '@/components/PreviewLinkTab'
 import cloneDeep from 'clone-deep'
 const AccountPage = async ({searchParams}) => {
 
@@ -30,6 +31,7 @@ const AccountPage = async ({searchParams}) => {
           <PageForm  page={page} />
           <PageFormBtn  page={page} user={session?.user} />
           <PageLinksForm page={page} user={session?.user} />
+          <PreviewLinkTab page={page} />
         </div>
       )
     }
