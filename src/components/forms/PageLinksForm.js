@@ -43,6 +43,7 @@ const PageLinksForm = ({page,user}) => {
                 return newLinks
             })
         })
+        toast.success('Image uploaded successfully!')
     }
 
     const handleInputChange = (key,prop,e) => {
@@ -60,6 +61,7 @@ const PageLinksForm = ({page,user}) => {
     const removeLink = (key) => {
         setLinks(prev => [...prev].filter(link => link.key !== key)
         )
+        toast.success('Successfully removed!')
     }
 
   return (
@@ -134,7 +136,7 @@ const PageLinksForm = ({page,user}) => {
 
             <div className='border-t pt-4 mt-4 '>
                 <div className='max-w-md mx-auto '>
-                <ClaimBtn text='Add Link' pendingText='Adding Link...' />
+                <ClaimBtn text='Save' pendingText='Saving...' />
                 </div>
             </div>
         </form>

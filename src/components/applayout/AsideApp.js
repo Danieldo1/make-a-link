@@ -7,12 +7,13 @@ import LogOut from '@/components/btns/LogOut'
 import { usePathname } from 'next/navigation'
 import { PlusCircle, XCircle } from 'lucide-react'
 
-const AsideApp = ({user}) => {
+const AsideApp = ({user,page}) => {
     const [isAsideHidden, setAsideHidden] = useState(false);
     const pathname = usePathname()
     const toggleAside = () => {
         setAsideHidden(!isAsideHidden);
       };
+      
   return (
     <>
           <button onClick={toggleAside} className="  left-2 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
@@ -26,6 +27,12 @@ const AsideApp = ({user}) => {
     <div className='rounded-full overflow-hidden aspect-square w-20 mx-auto'>
       <Image src={user.image} alt={user.name} width={256} height={256} />
     </div>
+
+      <Link target='_blank' href={`/${page.username}`} className='text-center mt-4 flex gap-1 items-center justify-center'>
+        logo
+        <span className='text-2xl text-gray-400'>/</span>
+        <span>{page.username}</span>
+      </Link>
 
       <nav className='flex flex-col justify-center text-center mt-8 gap-4 mx-auto'>
   <Link href='/account' className={'flex gap-2 font-semibold hover:bg-blue-50 rounded-lg p-2 transition duration-300 ease-in'+(pathname === '/account' ? ' bg-blue-50' : '')}>

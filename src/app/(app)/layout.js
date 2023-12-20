@@ -9,6 +9,9 @@ import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import AsideApp from '@/components/applayout/AsideApp'
 import {Toaster }from 'react-hot-toast'
+import { Page } from '@/models/Page'
+import mongoose from 'mongoose'
+
 
 export const metadata = {
   title: 'Make-a-Link',
@@ -23,13 +26,14 @@ export default async function RootLayout({ children,...rest }) {
   if(!session){
     redirect('/login')
   }
-
+  mongoose.connect(process.env.MONGODB_URL)
+  const page = await Page.findOne({owner:session?.user?.email})
  return (
   <html lang="en">
       <body className={inter.className}>
         <Toaster />
           <main className='flex min-h-screen '>
-           <AsideApp user={session?.user} />
+           <AsideApp user={session?.user} page={page} />
            <div className="flex-grow overflow-y-auto">
      
               {children}
