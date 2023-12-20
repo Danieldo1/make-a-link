@@ -12,17 +12,14 @@ const Nav = async () => {
   return (
     <header className='bg-gray-50 py-4 px-4 shadow-lg'>
         <div className='max-w-7xl justify-between px-6 flex mx-auto '>
-    <div className='flex items-center gap-4 md:px-8'>
+    <div className='flex items-center justify-center gap-4 md:px-8'>
       <Link href="/" className='text1 text-xl flex items-center justify-center'>
         <Image src='/unilink.svg' alt='Unilink' width={40} height={40} />
         UniLinks
       </Link>
       <nav className='flex gap-4 text-slate-500' >
-        <Link href="/about">
+        <Link href="/about" className='hover:text-black transition duration-300 ease-in'>
           About
-        </Link>
-        <Link href="/contact">
-          Contact
         </Link>
       </nav>
       </div>
@@ -30,8 +27,10 @@ const Nav = async () => {
     <nav className='flex gap-4 text-slate-500 border bg-gray-100 rounded-lg p-2 items-center justify-center hover:text-black transition duration-300 ease-in' >
         {!session && (
             <>
-      <Link href="/login">
-        Login or Signup
+      <Link href="/login" className='hover:text-black flex transition duration-300 ease-in'>
+        <p>Login</p>
+        <p className='hidden md:block px-1'> or </p>
+        <p className='hidden md:block'> Signup</p>
       </Link>
             </>
         )}
