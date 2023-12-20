@@ -15,7 +15,15 @@ github:'/github.svg',
 linkedin:'/linkedin1.svg',
 telegram:'/telegram.svg',
 }
-
+const buttonLinks =(key,value)=> {
+  if(key === 'email'){
+    return 'mailto:'+value
+  }
+  if(key=== 'mobile'){
+    return 'tel:'+value
+  }
+  return value
+}
 const UserPage = async ({params}) => {
     const url = params.username
     mongoose.connect(process.env.MONGODB_URL)
@@ -54,7 +62,7 @@ const UserPage = async ({params}) => {
         
         <div className='flex justify-center gap-4 my-4'>
         {Object.keys(page.buttons).map((key) => (
-          <Link key={key} href={page.buttons[key]} className='rounded-lg bg-white text-blue-950 p-2 flex'>
+          <Link key={key} href={buttonLinks(key,page.buttons[key])} className='rounded-lg bg-white text-blue-950 p-2 flex'>
            {icons[key] ? (<Image src={icons[key]} alt={key} width={24} height={24} />
            ) : key}
            {key}:
@@ -65,16 +73,23 @@ const UserPage = async ({params}) => {
         <div className='max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8'>
           {page.links.map((link) => (
             <Link key={link} href={link.url} className='text-white bg-indigo-950 p-2 flex'>
-              <div className='bg-blue-700 aspect-square p-2 overflow-hidden relative -left-4 w-16 h-16'>
+              <div className='bg-blue-700 aspect-square p-1 overflow-hidden relative -left-4 w-16 h-16'>
                 {link.icon && (
-                  <Image src={link.icon} alt={link.title} width={64} height={64} />
+                  <Image src={link.icon} alt={link.title} width={64} height={64} className='w-full h-full object-cover' />
                 )}
-                {!link.icon && <MapPinned />}
+                {!link.icon && (
+                  <div className='w-full h-full flex items-center justify-center'>
+                  
+                  <MapPinned />
+                  </div>
+                )}
               </div>
 
-              <div>
-                <h3>{link.title}</h3>
-                <p>{link.description}</p>
+              <div className='flex items-center justify-center'>
+                <div className=''>
+                <h3 className='font-bold'>{link.title}</h3>
+                <p className='text-white/40 h-6 overflow-hidden'>{link.subtitle}</p>
+                </div>
               </div>
             </Link>
           ))}
