@@ -14,8 +14,8 @@ import mongoose from 'mongoose'
 
 
 export const metadata = {
-  title: 'Make-a-Link',
-  description: 'Simplify Sharing, Amplify Impact. Make-a-Link: Your Links, Your Story, Your Way',
+  title: 'UniLinks',
+  description: 'Simplify Sharing, Amplify Impact. UniLinks: Your Links, Your Story, Your Way',
 }
 
 export default async function RootLayout({ children,...rest }) {

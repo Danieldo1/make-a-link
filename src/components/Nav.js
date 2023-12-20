@@ -12,7 +12,7 @@ const Nav = async () => {
         <div className='max-w-7xl justify-between px-6 flex mx-auto '>
     <div className='flex items-center gap-4 md:px-8'>
       <Link href="/">
-        Make-a-Link
+        UniLinks
       </Link>
       <nav className='flex gap-4 text-slate-500' >
         <Link href="/about">
