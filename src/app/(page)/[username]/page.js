@@ -5,6 +5,7 @@ import { User } from '@/models/User'
 import Image from 'next/image'
 import { MapPinned } from 'lucide-react'
 import Link from 'next/link'
+import { Views } from '@/models/Views'
 const icons = {
 email:'/mail.svg',
 mobile:'/mobile.svg',
@@ -28,7 +29,11 @@ const UserPage = async ({params}) => {
     const url = params.username
     mongoose.connect(process.env.MONGODB_URL)
     const page = await Page.findOne({username:url})
+    // console.log(page.owner)
     const user = await User.findOne({email:page.owner})
+    // console.log(user.email)
+
+    await Views.create({uri:url,type:'view',})
   return (
     <div className='bg-blue-950 text-white min-h-screen'>
          <div 
@@ -60,19 +65,20 @@ const UserPage = async ({params}) => {
                </div>
             </div>
         
-        <div className='flex justify-center gap-4 my-4'>
+        <div className='flex justify-center items-center gap-4 my-4'>
         {Object.keys(page.buttons).map((key) => (
-          <Link key={key} href={buttonLinks(key,page.buttons[key])} className='rounded-lg bg-white text-blue-950 p-2 flex'>
-           {icons[key] ? (<Image src={icons[key]} alt={key} width={24} height={24} />
+          <Link key={key} href={buttonLinks(key,page.buttons[key])} className='rounded-full lg:rounded-lg bg-white text-blue-950 p-2 flex justify-center items-center'>
+           {icons[key] ? (<Image src={icons[key]} alt={key} width={34} height={34} />
            ) : key}
-           {key}:
-            {page.buttons[key]}
+           <div className='flex-row gap-2 justify-center items-center'> 
+             <span className='hidden lg:block '>{key}:{page.buttons[key]}</span>
+           </div>
           </Link>
         ))}
         </div>
         <div className='max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8'>
           {page.links.map((link) => (
-            <Link key={link} href={link.url} className='text-white bg-indigo-950 p-2 flex'>
+            <Link target={'_blank'} ping={process.env.PUBLIC_URL+'api/click?url='+btoa(link.url)} key={link} href={link.url} className='text-white bg-indigo-950 p-2 flex'>
               <div className='bg-blue-700 aspect-square p-1 overflow-hidden relative -left-4 w-16 h-16'>
                 {link.icon && (
                   <Image src={link.icon} alt={link.title} width={64} height={64} className='w-full h-full object-cover' />
