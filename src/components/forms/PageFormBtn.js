@@ -19,8 +19,9 @@ const buttonsAll = [
     {key: 'telegram',label:'Telegram',src:'/telegram.svg'},
 ]
 const PageFormBtn = ({page,user}) => {
-    const savedBtns = Object.keys(page?.buttons)
+    const savedBtns = Object.keys(page?.buttons ?? {})
     const pageSavedBtns = savedBtns.map((key)=> buttonsAll.find(button => button.key === key))
+
     const [activeBtn, setActiveBtn] = useState(pageSavedBtns)
 
     const handleButtonClick = (button) => {
@@ -64,7 +65,7 @@ const PageFormBtn = ({page,user}) => {
                         <Image src={button.src} alt='Settings' width={25} height={25} />
                             <span className='text-sm uppercase hidden xl:block '>{button.label}</span>
                         </div>
-                <input type='text' defaultValue={page?.buttons[button.key]} name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} className='w-[70%]' />
+                <input type='text' defaultValue={page?.buttons?.[button.key] ?? ''} name={button.key} placeholder={button.label} style={{marginBottom:'0px'}} className='w-[70%]' />
                 <button type='button' onClick={()=>deleteButton(button)} >
                     <TrashIcon className='w-6 h-6 cursor-pointer hover:text-red-500 transition duration-150 ease-in' />
                 </button>

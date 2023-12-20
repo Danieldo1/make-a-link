@@ -16,7 +16,7 @@ const AsideApp = ({user,page}) => {
       
   return (
     <>
-          <button onClick={toggleAside} className="  left-1 md:left-0.5 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
+          <button onClick={toggleAside} className="left-1 md:left-0.5 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
         {isAsideHidden ? (
         <div className=' flex flex-col items-center gap-3'>
         <PlusCircle className='w-6 h-6' />
@@ -40,11 +40,14 @@ const AsideApp = ({user,page}) => {
       <Image src={user.image} alt={user.name} width={256} height={256} />
     </div>
 
-      <Link target='_blank' href={`/${page.username}`} className='text-center mt-4 flex gap-1 items-center justify-center'>
-        logo
-        <span className='text-2xl text-gray-400'>/</span>
-        <span>{page.username}</span>
-      </Link>
+     {page && (
+       <Link target='_blank' href={`/${page.username}`} className='text-center mt-4 flex gap-1 items-center  justify-center'>
+       <Image src={'/unilink.svg'} alt='Unilink' width={25} height={25} />
+       <p className='text1 text-lg flex items-center justify-center '>UniLinks</p>
+       <span className='text-2xl text-gray-400 '>/</span>
+       <span className='line-clamp-1'>{page.username}</span>
+     </Link>
+     ) }
 
       <nav className='flex flex-col justify-center text-center mt-8 gap-4 mx-auto'>
   <Link href='/account' className={'flex gap-2 font-semibold hover:bg-blue-50 rounded-lg p-2 transition duration-300 ease-in'+(pathname === '/account' ? ' bg-blue-50' : '')}>

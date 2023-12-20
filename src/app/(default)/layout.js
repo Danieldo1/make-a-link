@@ -1,8 +1,10 @@
-import { Inter } from 'next/font/google'
+import { Inter,Kanit } from 'next/font/google'
+
 import '../globals.css'
 import Nav from '@/components/Nav'
 
 const inter = Inter({ subsets: ['latin'] })
+const kanit = Kanit({ subsets: ['latin'], weight: ['100','200','300','400','500','600','700','800','900'], variable: '--font-kanit', style: ['normal', 'italic'] })
 
 export const metadata = {
   title: 'UniLinks',

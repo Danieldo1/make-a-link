@@ -38,7 +38,7 @@ const router = useRouter()
     <form 
     onSubmit={handleSubmit}
     className='inline-flex shadow-md items-center bg-white shadow-gray/50 rounded-lg  '> 
-    <span className="bg-white py-4 pl-4 rounded-lg ">unilink/</span>
+    <span className="bg-white py-4 pl-2 rounded-lg w-[120px] ">uni-links/</span>
       <input 
       type="text"
       placeholder="Add your username" 

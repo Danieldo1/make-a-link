@@ -21,15 +21,15 @@ const AccountPage = async ({searchParams}) => {
       return  redirect('/login')
     }
 
-    const cleanPage = cloneDeep(page.toJSON())
-    cleanPage._id = cleanPage._id.toString()
-
+    // const cleanPage = cloneDeep(page.toJSON())
+    // cleanPage._id = cleanPage._id.toString()
+ 
     if(page){
       return(
         <div>
-          <PageForm  page={cleanPage} />
-          <PageFormBtn  page={cleanPage} user={session?.user} />
-          <PageLinksForm page={cleanPage} user={session?.user} />
+          <PageForm  page={page} />
+          <PageFormBtn  page={page} user={session?.user} />
+          <PageLinksForm page={page} user={session?.user} />
         </div>
       )
     }

@@ -33,7 +33,9 @@ export default async function RootLayout({ children,...rest }) {
       <body className={inter.className}>
         <Toaster />
           <main className='flex min-h-screen '>
-           <AsideApp user={session?.user} page={page} />
+            {url && <AsideApp page={page} url={url} user={session?.user} /> }
+            {!url && <AsideApp page={page} user={session?.user} />}
+           {/* <AsideApp user={session?.user} page={page} /> */}
            <div className="flex-grow overflow-y-auto ml-2 md:ml-0">
      
               {children}

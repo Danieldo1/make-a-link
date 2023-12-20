@@ -33,3 +33,9 @@ input[type="text"],textarea {
     opacity: .3;
     @apply bg-gray-300
 }
+
+.text1 {
+    font-family: var(--font-kanit);
+    font-weight: 900;
+    font-style: italic;
+}

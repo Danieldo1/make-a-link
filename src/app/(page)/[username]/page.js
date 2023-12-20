@@ -23,50 +23,55 @@ const buttonLinks =(key,value)=> {
   if(key=== 'mobile'){
     return 'tel:'+value
   }
+  console.log('key',key,'value',value)
   return value
 }
 const UserPage = async ({params}) => {
     const url = params.username
+    // console.log(url)
     mongoose.connect(process.env.MONGODB_URL)
     const page = await Page.findOne({username:url})
     // console.log(page.owner)
-    const user = await User.findOne({email:page.owner})
-    // console.log(user.email)
+   
+    const user = await User.findOne({email: page?.owner});
+      // console.log(user.email)
+    
+  
 
-    await Views.create({uri:url,page:page.username,type:'view',})
+    await Views.create({uri:url,page:page?.username,type:'view',})
   return (
     <div className='bg-blue-950 text-white min-h-screen'>
          <div 
         style={
-        page.bgType === 'color' ? {backgroundColor:page.bgColor} : {backgroundImage:`url(${page.bgImage})`}
+        page?.bgType === 'color' ? {backgroundColor:page?.bgColor} : {backgroundImage:`url(${page?.bgImage})`}
         }
         className=' h-64 rounded-t-lg bg-cover bg-center '>
 
         </div>
 
         <div className='aspect-square w-48 h-48 mx-auto relative -top-16'>
-            <Image src={user.image} alt='avatar' width={256} height={256} className='rounded-full w-full h-full object-cover' />
+            <Image src={user?.image} alt='avatar' width={256} height={256} className='rounded-full w-full h-full object-cover' />
         </div>
             
             <div className='-mt-12'>
-                <h2 className='text-center font-bold text-3xl mb-1'>{page.displayName}</h2>
+                <h2 className='text-center font-bold text-3xl mb-1'>{page?.displayName}</h2>
                 
                 <h3 className='text-lg flex gap-2 justify-center text-white/70'>
                     <MapPinned />
                     <span>
-                    {page.location}
+                    {page?.location}
                     </span>
                 </h3>
                
                <div className='text-center max-w-xs mx-auto my-2'>
                   <p className=''>
-                  {page.bio}
+                  {page?.bio}
                   </p>
                </div>
             </div>
         
         <div className='flex justify-center items-center gap-4 my-4'>
-        {Object.keys(page.buttons).map((key) => (
+        {Object.keys(page?.buttons).map((key) => (
           <Link key={key} href={buttonLinks(key,page.buttons[key])} className='rounded-full lg:rounded-lg bg-white text-blue-950 p-2 flex justify-center items-center'>
            {icons[key] ? (<Image src={icons[key]} alt={key} width={34} height={34} />
            ) : key}
