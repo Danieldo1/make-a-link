@@ -78,7 +78,7 @@ const UserPage = async ({params}) => {
         </div>
         <div className='max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8'>
           {page.links.map((link) => (
-            <Link target={'_blank'} ping={process.env.PUBLIC_URL+'api/click?url='+btoa(link.url)+'&page='+page.username} key={link} href={link.url} className='text-white bg-indigo-950 p-2 flex'>
+            <Link target={'_blank'} ping={process.env.PUBLIC_URL+'api/click?url='+btoa(link.url)+'&page='+page.username} key={link.url} href={link.url} className='text-white bg-indigo-950 p-2 flex'>
               <div className='bg-blue-700 aspect-square p-1 overflow-hidden relative -left-4 w-16 h-16'>
                 {link.icon && (
                   <Image src={link.icon} alt={link.title} width={64} height={64} className='w-full h-full object-cover' />

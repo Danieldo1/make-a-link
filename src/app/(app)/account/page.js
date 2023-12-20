@@ -10,6 +10,7 @@ import ClaimForm from '@/components/forms/ClaimForm'
 import  PageForm  from '@/components/forms/PageForm'
 import PageFormBtn from '@/components/forms/PageFormBtn'
 import PageLinksForm  from '@/components/forms/PageLinksForm'
+import cloneDeep from 'clone-deep'
 const AccountPage = async ({searchParams}) => {
 
     const session = await getServerSession(optionsAuth)
@@ -20,12 +21,15 @@ const AccountPage = async ({searchParams}) => {
       return  redirect('/login')
     }
 
+    const cleanPage = cloneDeep(page.toJSON())
+    cleanPage._id = cleanPage._id.toString()
+
     if(page){
       return(
         <div>
-          <PageForm  page={page} />
-          <PageFormBtn  page={page} user={session?.user} />
-          <PageLinksForm page={page} user={session?.user} />
+          <PageForm  page={cleanPage} />
+          <PageFormBtn  page={cleanPage} user={session?.user} />
+          <PageLinksForm page={cleanPage} user={session?.user} />
         </div>
       )
     }

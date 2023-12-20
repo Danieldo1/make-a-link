@@ -16,8 +16,20 @@ const AsideApp = ({user,page}) => {
       
   return (
     <>
-          <button onClick={toggleAside} className="  left-2 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
-        {isAsideHidden ? (<PlusCircle className='w-6 h-6' />) : (<XCircle className='w-6 h-6' />)}
+          <button onClick={toggleAside} className="  left-1 md:left-0.5 top-4 z-10  fixed transition-transform duration-300 ease-in-out ">
+        {isAsideHidden ? (
+        <div className=' flex flex-col items-center gap-3'>
+        <PlusCircle className='w-6 h-6' />
+       <p className='rotate-90 text-gray-700 '>Panel</p>
+        </div>
+        
+        ) : (
+          <div className='flex items-center gap-2 '>
+          <XCircle className='w-6 h-6' />
+          <p className='text-gray-700 hidden'>Close</p>
+          </div>
+        
+        )}
       </button>
 
       <div className="flex ">

@@ -34,7 +34,7 @@ export default async function RootLayout({ children,...rest }) {
         <Toaster />
           <main className='flex min-h-screen '>
            <AsideApp user={session?.user} page={page} />
-           <div className="flex-grow overflow-y-auto">
+           <div className="flex-grow overflow-y-auto ml-2 md:ml-0">
      
               {children}
         

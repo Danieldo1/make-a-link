@@ -32,8 +32,8 @@ const nextDate = data?.[index+1]?.date
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} strokeWidth='2' stroke='#f5f5f5' />
                 <XAxis dataKey="date" axisLine={false} tickLine={false} tickMargin='10' tick={{fill: '#aaa'}} />
                 <YAxis axisLine={false} tickLine={false} tickMargin='10' tick={{fill: '#aaa'}} />
-                <Tooltip />
-                <Line type="monotone" dataKey={xAxis} stroke="#7A5BC7" dot={false} strokeWidth='4' />
+                <Tooltip labelStyle={{color: '#aaa',borderRadius: '5px'}} wrapperStyle={{alignItems: 'center',justifyContent: 'center', }}  contentStyle={{borderRadius: '7px',justifyItems: 'center',alignItems: 'center',}} />
+                <Line type="monotone" dataKey={xAxis} stroke="#4E6EC1" dot={false} strokeWidth='4' />
             </LineChart>
         </ResponsiveContainer>
     </div>

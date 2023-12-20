@@ -50,17 +50,18 @@ const clicks = await Views.find({page:page.username,type:'click'})
   return (
     <div>
       <SectionBox>
-        <h2 className='text-2xl font-bold mb-4 text-center mt-5'>Views</h2>
+        <h2 className='text-2xl font-bold mb-4 text-center mt-5'>Profile Views</h2>
        <Chart  data = {groupedViews.map(o => ({'date': o._id, 'views': o.count}))} />
       </SectionBox>
 
-      <SectionBox>
-      
-      <h2 className='text-2xl font-bold mb-4 text-center mt-5'>Clicks</h2>
+      <SectionBox >
+      <div className='px-10'>
+
+      <h2 className='text-2xl font-bold mb-4 text-center mt-5'>Link Clicks</h2>
         {page?.links.map(link => {
           return (
-  <div key={link.url} className='border-t border-gray-200 py-4 md:flex block items-center '>
-              <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-4'>
+  <div key={link.url} className='shadow-md border rounded-lg my-4 bg-gray-100 py-4 px-4 md:flex block items-center md:items-stretch text-center md:text-left justify-center '>
+              <div className='w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center mr-5 my-auto'>
                 <LinkIcon className='w-5 h-5' />
               </div>
 
@@ -81,6 +82,7 @@ const clicks = await Views.find({page:page.username,type:'click'})
 </div>
           )
         })}
+      </div>
       </SectionBox>
     </div>
   )

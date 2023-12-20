@@ -83,7 +83,7 @@ const router = useRouter()
    <div className='radio-selectors flex justify-center'>
         {options.map((option) => {
           return (
-            <label key={option.value}>
+            <label key={option.value} className='cursor-pointer' >
               <input
                 type='radio'
                 name='bgType'

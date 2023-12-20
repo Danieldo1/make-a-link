@@ -4,9 +4,10 @@ import { signIn } from 'next-auth/react'
 import React, { useEffect } from 'react'
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import {SendHorizontal} from 'lucide-react'
 
 const HeroForm = ({user}) => {
-console.log(user)
+
 const router = useRouter()
    useEffect(() => {
        if('localStorage' in window && window.localStorage.getItem('users username')){
@@ -36,17 +37,20 @@ const router = useRouter()
   return (
     <form 
     onSubmit={handleSubmit}
-    className='inline-flex shadow-md items-center shadow-gray/50 rounded-lg  '> 
+    className='inline-flex shadow-md items-center bg-white shadow-gray/50 rounded-lg  '> 
     <span className="bg-white py-4 pl-4 rounded-lg ">linkme.to/</span>
       <input 
-    
       type="text"
       placeholder="Add your username" 
-      className='py-4 ' />
+      className='py-4 text-black focus-visible:outline-none ' 
+      style={{backgroundColor: 'transparent', marginBottom: '-1px',paddingLeft: '0px'}}
+      />
       <button 
       type="submit" 
       className='bg-blue-500 text-white px-6 py-4 rounded-r-lg '
-      >Get Started</button>
+      >
+        <span><SendHorizontal /></span>
+      </button>
     </form>
   )
 }
