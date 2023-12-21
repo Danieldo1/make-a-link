@@ -4,7 +4,7 @@ import SectionBox from './applayout/SectionBox'
 
 const About = () => {
   return (
-    <div className=' mt-24 md:mx-10 lg:mx-16 xl:mx-20 '>
+    <div className=' mt-24 md:mx-10 lg:mx-32 xl:mx-40 '>
             <h2 className=' text-3xl text1'>How UniLinks works?</h2>
            
 
@@ -27,7 +27,7 @@ const About = () => {
                 <p className='md:text-lg xl:text-xl text-sm mb-2 font0semibold'>This will set up a page for you that everyone can see, where you can share all your links in one place.</p>
             </div>
                 <div className='rounded-lg justify-center flex items-center overflow-hidden '>
-                    <Image src='/sharing.png' alt='sharing' width={500} height={500} className='grow w-full h-full object-cover ' />
+                    <Image src='/sharing.png' alt='sharing' width={300} height={300} className='grow w-full h-full object-cover ' />
                 </div>
             </div>
     </SectionBox>
