@@ -13,6 +13,7 @@ import { formatISO9075, isToday } from 'date-fns'
 
 
 
+
 const AnalyticsPage = async () => {
   const session = await getServerSession(optionsAuth)
   if(!session){
@@ -84,6 +85,7 @@ const clicks = await Views.find({page:page.username,type:'click'})
         })}
       </div>
       </SectionBox>
+      
     </div>
   )
 }

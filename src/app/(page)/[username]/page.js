@@ -24,7 +24,6 @@ const buttonLinks =(key,value)=> {
   if(key=== 'mobile'){
     return 'tel:'+value
   }
-  console.log('key',key,'value',value)
   return value
 }
 const UserPage = async ({params}) => {

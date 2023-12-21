@@ -24,7 +24,7 @@ const AsideApp = ({user,page}) => {
         </div>
         
         ) : (
-          <div className='flex items-center gap-2 '>
+          <div className='flex items-center gap-2 ml-3'>
           <XCircle className='w-6 h-6' />
           <p className='text-gray-700 hidden'>Close</p>
           </div>

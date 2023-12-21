@@ -7,7 +7,7 @@ import Image from 'next/image'
 import {Home} from 'lucide-react'
 const Nav = async () => {
     const session = await getServerSession(optionsAuth)
-    console.log(session)
+   
 
   return (
     <header className='bg-gray-50 py-4 px-4 shadow-lg'>
@@ -17,11 +17,11 @@ const Nav = async () => {
         <Image src='/unilink.svg' alt='Unilink' width={40} height={40} />
         UniLinks
       </Link>
-      <nav className='flex gap-4 text-slate-500' >
-        <Link href="/about" className='hover:text-black transition duration-300 ease-in'>
+      {/* <nav className='flex gap-4 text-slate-500' >
+        <p onClick={() => scrollTo({top: 1000, behavior: 'smooth'})} className='hover:text-black transition duration-300 ease-in'>
           About
-        </Link>
-      </nav>
+        </p>
+      </nav> */}
       </div>
 
     <nav className='flex gap-4 text-slate-500 border bg-gray-100 rounded-lg p-2 items-center justify-center hover:text-black transition duration-300 ease-in' >
