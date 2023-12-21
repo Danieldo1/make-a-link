@@ -35,9 +35,11 @@ const router = useRouter()
         }
     }
   return (
+    <div className='max-w-3xl mx-auto'>
+
     <form 
     onSubmit={handleSubmit}
-    className='inline-flex shadow-md items-center bg-white shadow-gray/50 rounded-lg  '> 
+    className='inline-flex shadow-md items-center bg-white shadow-gray/50 w-full rounded-lg  '> 
     <span className="bg-white py-4 pl-2 rounded-lg w-[160px] text2">uni-links/</span>
       <input 
       type="text"
@@ -52,6 +54,7 @@ const router = useRouter()
         <span><SendHorizontal /></span>
       </button>
     </form>
+    </div>
   )
 }
 
